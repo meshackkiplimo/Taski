@@ -1,25 +1,22 @@
 package main
 
 import (
-    "github.com/gofiber/fiber/v2"
-    "github.com/yourusername/task-manager/database"
-    "github.com/yourusername/task-manager/handlers"
+	"github.com/gofiber/fiber/v2"
+	"github.com/meshackkiplimo/Taski/database"
 )
 
 func main() {
-    // Initialize database
-    database.Connect()
+	// Initialize database connection
+	database.Connect()
 
-    // Create Fiber app
-    app := fiber.New()
+	// Create Fiber app
+	app := fiber.New()
 
-    // Define routes
-    app.Post("/tasks", handlers.CreateTask)
-    app.Get("/tasks", handlers.GetTasks)
-    app.Get("/tasks/:id", handlers.GetTask)
-    app.Put("/tasks/:id", handlers.UpdateTask)
-    app.Delete("/tasks/:id", handlers.DeleteTask)
+	// Basic root endpoint
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Task Manager API")
+	})
 
-    // Start server
-    app.Listen(":3000")
+	// Start server
+	app.Listen(":3000")
 }
