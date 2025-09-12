@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Taski/models"
 	"github.com/joho/godotenv"
-	"github.com/meshackkiplimo/Taski/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
