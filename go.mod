@@ -1,4 +1,4 @@
-module github.com/meshackkiplimo/Taski
+module github.com/Taski
 
 go 1.24.3
 
