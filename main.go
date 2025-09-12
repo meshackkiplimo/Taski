@@ -3,8 +3,9 @@ package main
 import (
 	"github.com/Taski/controllers"
 	"github.com/Taski/database"
-	"github.com/Taski/models"
+	"github.com/Taski/repository"
 	"github.com/Taski/routes"
+	"github.com/Taski/services"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -13,8 +14,8 @@ func main() {
 	database.Connect()
 
 	// Initialize layers
-	taskRepo := models.NewTaskRepository(database.DB)
-	taskService := models.NewTaskService(taskRepo)
+	taskRepo := repository.NewTaskRepository(database.DB)
+	taskService := services.NewTaskService(taskRepo)
 	taskController := controllers.NewTaskController(taskService)
 
 	// Create Fiber app

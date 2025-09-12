@@ -1,20 +1,20 @@
 package controllers
 
 import (
-	"github.com/Taski/models"
+	"github.com/Taski/services"
 	"github.com/gofiber/fiber/v2"
 )
 
 type TaskController struct {
-	taskService *models.TaskService
+	taskService *services.TaskService
 }
 
-func NewTaskController(taskService *models.TaskService) *TaskController {
+func NewTaskController(taskService *services.TaskService) *TaskController {
 	return &TaskController{taskService: taskService}
 }
 
 func (tc *TaskController) CreateTask(c *fiber.Ctx) error {
-	var req models.CreateTaskRequest
+	var req services.CreateTaskRequest
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Cannot parse JSON"})
 	}
@@ -46,7 +46,7 @@ func (tc *TaskController) GetTask(c *fiber.Ctx) error {
 
 func (tc *TaskController) UpdateTask(c *fiber.Ctx) error {
 	id := c.Params("id")
-	var req models.UpdateTaskRequest
+	var req services.UpdateTaskRequest
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Cannot parse JSON"})
 	}

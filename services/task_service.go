@@ -2,8 +2,8 @@ package services
 
 import (
 	"errors"
-
 	"github.com/Taski/models"
+	"github.com/Taski/repository"
 )
 
 type CreateTaskRequest struct {
@@ -19,10 +19,10 @@ type UpdateTaskRequest struct {
 }
 
 type TaskService struct {
-	taskRepo *TaskRepository
+	taskRepo *repository.TaskRepository
 }
 
-func NewTaskService(taskRepo *TaskRepository) *TaskService {
+func NewTaskService(taskRepo *repository.TaskRepository) *TaskService {
 	return &TaskService{taskRepo: taskRepo}
 }
 
